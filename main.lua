@@ -57,7 +57,9 @@ while true do
 qr:scaledisplay(480-(qr:width()/2)*2, 272-(qr:height()/2)*2, 2, 2)
 controls.update()
 if controls.released(SCE_CTRL_START) then dofile("main.lua") end
-if controls.released(SCE_CTRL_CROSS) then os.screenshotcapture() end
+if controls.released(SCE_CTRL_CROSS) then
+local path = os.keyboard("Path where to save the QR code (saved in PNG format)")
+qr:save(path) if io.exists(path) then os.message("QR code saved to "..path) end end
 draw.swapbuffers()
 end
 elseif menu_res == "Exit" then
